@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchVideos } from "../api/videoService";
 import { useEffect, useState } from "react";
+import VideoCart from "./VideoCart";
 
 const Video = () => {
   const {
@@ -40,11 +41,7 @@ const Video = () => {
   return (
     <div>
       {video.map((video) => (
-        <div key={video.id}>
-          <img src={video.thumbnail} alt={video.title} />
-          <h2>{video.title}</h2>
-          <p>{video.channelTitle}</p>
-        </div>
+        <VideoCart key={video.id} video={video} />
       ))}
     </div>
   );

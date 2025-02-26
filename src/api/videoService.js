@@ -25,6 +25,7 @@ export const fetchVideos = async () => {
       channelTitle: video.snippet.channelTitle,
       thumbnail: video.snippet.thumbnails.medium.url,
       kind: video.id.kind,
+      publishTime: video.snippet.publishTime,
     }));
   } catch (error) {
     console.error("Error fetching videos:", error);
