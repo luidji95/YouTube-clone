@@ -3,7 +3,7 @@ import { fetchVideos } from "../api/videoService";
 import { useEffect, useState } from "react";
 import VideoCart from "./VideoCart";
 
-const Video = () => {
+const VideoList = () => {
   const {
     data: videoList,
     isLoading,
@@ -14,7 +14,6 @@ const Video = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  const [channel, setChannel] = useState([]);
   const [video, setVideo] = useState([]);
 
   useEffect(() => {
@@ -22,24 +21,16 @@ const Video = () => {
       const filteredVideos = videoList.filter(
         (item) => item.kind === "youtube#video"
       );
-      const filteredChannels = videoList.filter(
-        (item) => item.kind === "youtube#channel"
-      );
 
       setVideo(filteredVideos);
-      setChannel(filteredChannels);
     }
   }, [videoList]);
-
-  console.log("Query result:", videoList);
-  console.log("Filtered Videos:", video);
-  console.log("Filtered Channels:", channel);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
+    <div className="video-list">
       {video.map((video) => (
         <VideoCart key={video.id} video={video} />
       ))}
@@ -47,4 +38,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default VideoList;
