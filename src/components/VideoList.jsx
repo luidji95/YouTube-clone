@@ -1,38 +1,37 @@
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { fetchVideos } from "../api/videoService";
-import { useEffect, useState } from "react";
-import VideoCart from "./VideoCart";
 
-const VideoList = () => {
-  const {
-    data: videoList,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["videos"],
-    queryFn: fetchVideos,
-    staleTime: 1000 * 60 * 5,
-  });
-
-  const [video, setVideo] = useState([]);
+const VideoList = ({ category }) => {
+  const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (videoList && videoList.length > 0) {
-      const filteredVideos = videoList.filter(
-        (item) => item.kind === "youtube#video"
-      );
+    setIsLoading(true);
+    setError(null);
 
-      setVideo(filteredVideos);
-    }
-  }, [videoList]);
+    fetchVideos(category)
+      .then((data) => {
+        setVideos(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setIsLoading(false);
+      });
+  }, [category]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="video-list">
-      {video.map((video) => (
-        <VideoCart key={video.id} video={video} />
+      {videos.map((video) => (
+        <div key={video.id} className="video-card">
+          <img src={video.thumbnail} alt={video.title} />
+          <h2>{video.title}</h2>
+          <p>{video.channelTitle}</p>
+        </div>
       ))}
     </div>
   );

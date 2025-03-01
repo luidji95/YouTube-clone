@@ -1,22 +1,18 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import VideoList from "./components/VideoList";
 import NavBar from "./components/NavBar";
+import VideoList from "./components/VideoList";
 import Header from "./components/Header";
-import SharedLayout from "./components/SharedLayout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
+  const [category, setCategory] = useState("New"); // Držimo kategoriju ovde
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<VideoList />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <Header />
+      <NavBar setCategory={setCategory} />
+      <VideoList category={category} />
+    </div>
   );
 }
 
