@@ -1,28 +1,20 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchVideos } from "../api/videoService";
 
 const VideoList = ({ category }) => {
-  const [videos, setVideos] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-
-    fetchVideos(category)
-      .then((data) => {
-        setVideos(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
-      });
-  }, [category]);
+  const {
+    data: videos,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["videos", category],
+    queryFn: () => fetchVideos(category),
+    staleTime: 1000 * 60 * 5,
+  });
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div className="video-list">

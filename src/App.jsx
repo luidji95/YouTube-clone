@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import "./App.css";
 
 function App() {
-  const [category, setCategory] = useState("New"); // Držimo kategoriju ovde
+  const [category, setCategory] = useState("New");
 
   return (
     <div>
