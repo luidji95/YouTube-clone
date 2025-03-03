@@ -1,4 +1,8 @@
-const VideoCart = ({ video }) => {
+import { useNavigate } from "react-router-dom";
+
+const VideoCard = ({ video }) => {
+  const navigate = useNavigate();
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -8,8 +12,12 @@ const VideoCart = ({ video }) => {
     });
   };
 
+  const handleClick = () => {
+    navigate(`/video/${video.id}`);
+  };
+
   return (
-    <div className="video-card">
+    <div className="video-card" onClick={handleClick}>
       <img src={video.thumbnail} alt={video.title} />
       <div className="video-card-content">
         <h3>{video.title}</h3>
@@ -20,4 +28,4 @@ const VideoCart = ({ video }) => {
   );
 };
 
-export default VideoCart;
+export default VideoCard;
