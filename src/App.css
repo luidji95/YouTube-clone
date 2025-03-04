@@ -250,3 +250,16 @@
 .mic-button:hover {
   background-color: #606060;
 }
+.video-detail {
+  padding: 20px;
+}
+
+.video-detail h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.video-detail p {
+  font-size: 16px;
+  color: #666;
+}

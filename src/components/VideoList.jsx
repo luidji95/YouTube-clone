@@ -9,7 +9,7 @@ const VideoList = ({ category }) => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["videos", category],
+    queryKey: [`videos/${category}`],
     queryFn: () => fetchVideos(category),
     staleTime: 1000 * 60 * 5,
   });

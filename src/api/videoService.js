@@ -45,9 +45,11 @@ export const fetchSingleVideo = async (videoId) => {
     if (!response.ok) throw new Error("Failed to fetch video details");
 
     const data = await response.json();
+    console.log("API Response:", data);
+    console.log("First Item:", data.items[0]);
     return data.items[0];
   } catch (error) {
     console.error("Error fetching video details:", error);
-    return null;
+    throw error;
   }
 };
