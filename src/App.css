@@ -263,3 +263,72 @@
   font-size: 16px;
   color: #666;
 }
+/* Sekcija za komentare */
+.comments-section {
+  margin-top: 20px;
+}
+
+.comment-list {
+  padding: 0;
+  list-style: none;
+}
+
+.comment {
+  background: #222;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.comment strong {
+  display: block;
+  font-size: 14px;
+  color: #fff;
+}
+
+.comment p {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.comment small {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+}
+.related-videos {
+  margin-top: 20px;
+}
+
+.related-video-list {
+  list-style: none;
+  padding: 0;
+}
+
+.related-video {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.related-video img {
+  width: 120px;
+  height: 80px;
+  border-radius: 5px;
+}
+
+.related-video h4 {
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+}
+
+.related-video p {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+}
