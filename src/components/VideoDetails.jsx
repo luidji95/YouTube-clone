@@ -22,16 +22,25 @@ const VideoDetail = () => {
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="video-detail">
-      <h2>{video.snippet.title}</h2>
-      <h3>{video.snippet.channelTitle}</h3>
-      <p>{video.snippet.description}</p>
-      <p>Likes: {video.statistics.likeCount}</p>
-      <p>Views: {video.statistics.viewCount}</p>
+    <div className="video-detail-container">
+      {/* Glavni video i komentari - zauzimaju većinu prostora */}
+      <div className="video-content">
+        <div className="video-detail">
+          <h2 className="video-title">{video.snippet.title}</h2>
+          <h3 className="channel-title">{video.snippet.channelTitle}</h3>
+          <p className="video-description">{video.snippet.description}</p>
+          <p className="video-likes">Likes: {video.statistics.likeCount}</p>
+          <p className="video-views">Views: {video.statistics.viewCount}</p>
+        </div>
 
-      <RelatedVideos videoId={videoId} />
+        {/* Sekcija za komentare (deo video-content-a) */}
+        <Comments videoId={videoId} />
+      </div>
 
-      <Comments videoId={videoId} />
+      {/* Related videos u posebnom div-u sa strane */}
+      <div className="related-videos-container">
+        <RelatedVideos videoId={videoId} />
+      </div>
     </div>
   );
 };
