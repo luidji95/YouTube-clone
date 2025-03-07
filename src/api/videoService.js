@@ -78,6 +78,8 @@ export const fetchComments = async (videoId) => {
           author: comment.snippet.topLevelComment.snippet.authorDisplayName,
           text: comment.snippet.topLevelComment.snippet.textDisplay,
           publishedAt: comment.snippet.topLevelComment.snippet.publishedAt,
+          thumbnail:
+            comment.snippet.topLevelComment.snippet.authorProfileImageUrl, // OVO ISPRAVLJENO!
         }))
       : [];
   } catch (error) {

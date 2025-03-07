@@ -26,6 +26,11 @@ const VideoDetail = () => {
       {/* Glavni video i komentari - zauzimaju većinu prostora */}
       <div className="video-content">
         <div className="video-detail">
+          <img
+            src={video.snippet.thumbnails.medium.url}
+            alt={video.snippet.title}
+            className="video-thumbnail"
+          />
           <h2 className="video-title">{video.snippet.title}</h2>
           <h3 className="channel-title">{video.snippet.channelTitle}</h3>
           <p className="video-description">{video.snippet.description}</p>

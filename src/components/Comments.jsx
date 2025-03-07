@@ -24,11 +24,21 @@ const Comments = ({ videoId }) => {
       <ul className="comment-list">
         {comments.map((comment) => (
           <li key={comment.id} className="comment">
-            <strong>{comment.author}</strong>
-            <p>{comment.text}</p>
-            <small>
-              Published: {new Date(comment.publishedAt).toLocaleString()}
-            </small>
+            <dvi className="imgprofilePic">
+              <img
+                src={comment.thumbnail}
+                alt={`${comment.author}'s profile`}
+                className="comment-avatar"
+              />
+              <strong className="comment-author">{comment.author}</strong>
+              <small className="comment-date">
+                Posted: {new Date(comment.publishedAt).toLocaleString()}
+              </small>
+            </dvi>
+
+            <div className="comment-content">
+              <p className="comment-text">{comment.text}</p>
+            </div>
           </li>
         ))}
       </ul>
