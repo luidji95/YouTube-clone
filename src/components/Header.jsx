@@ -1,4 +1,16 @@
-const Header = () => {
+import { useState } from "react";
+
+const Header = ({ setCategory }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      setCategory(searchTerm); // Prosleđujemo pretragu
+      setSearchTerm(""); // Resetujemo input
+    }
+  };
+
   return (
     <header className="header">
       <div className="logo">
@@ -7,12 +19,18 @@ const Header = () => {
           alt="YouTube Logo"
         />
       </div>
-      <div className="search-container">
-        <input type="text" placeholder="Претражите" className="search-input" />
-        <span className="keyboard-icon">⌨</span>
-        <button className="search-button">🔍</button>
-        <button className="mic-button">🎤</button>
-      </div>
+      <form className="search-container" onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Search..."
+          className="search-input"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="submit" className="search-button">
+          🔍
+        </button>
+      </form>
     </header>
   );
 };

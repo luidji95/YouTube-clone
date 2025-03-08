@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchVideos } from "../api/videoService";
+import { fetchVideos, fetchSearchedVideos } from "../api/videoService";
 import VideoCard from "./VideoCard";
 
 const VideoList = ({ category }) => {

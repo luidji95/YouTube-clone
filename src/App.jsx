@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import VideoList from "./components/VideoList";
 import Header from "./components/Header";
-import VideoDetails from "./components/VideoDetails";
+import VideoDetail from "./components/VideoDetails";
 import "./App.css";
 
 function App() {
@@ -11,11 +11,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header setCategory={setCategory} />
       <NavBar setCategory={setCategory} />
       <Routes>
         <Route path="/" element={<VideoList category={category} />} />
-        <Route path="/video/:videoId" element={<VideoDetails />} />
+        <Route path="/video/:videoId" element={<VideoDetail />} />
       </Routes>
     </BrowserRouter>
   );
