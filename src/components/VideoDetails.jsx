@@ -23,14 +23,16 @@ const VideoDetail = () => {
 
   return (
     <div className="video-detail-container">
-      {/* Glavni video i komentari - zauzimaju većinu prostora */}
       <div className="video-content">
         <div className="video-detail">
-          <img
-            src={video.snippet.thumbnails.medium.url}
-            alt={video.snippet.title}
-            className="video-thumbnail"
-          />
+          <iframe
+            width="800"
+            height="450"
+            src={`https://www.youtube.com/embed/${video.id}`}
+            title={video.snippet.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
           <h2 className="video-title">{video.snippet.title}</h2>
           <h3 className="channel-title">{video.snippet.channelTitle}</h3>
           <p className="video-description">{video.snippet.description}</p>
