@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchVideos, fetchSearchedVideos } from "../api/videoService";
 import VideoCard from "./VideoCard";
+import ChannelCard from "./ChannelCart";
+import { useEffect } from "react";
 
 const VideoList = ({ category }) => {
   const {
@@ -19,9 +21,13 @@ const VideoList = ({ category }) => {
 
   return (
     <div className="video-list">
-      {videos.map((video) => (
-        <VideoCard key={video.id} video={video} />
-      ))}
+      {videos.map((video) =>
+        video.kind === "youtube#video" ? (
+          <VideoCard key={video.id} video={video} />
+        ) : (
+          <ChannelCard key={video.id} channel={video} />
+        )
+      )}
     </div>
   );
 };
